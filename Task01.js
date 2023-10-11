@@ -1,9 +1,7 @@
+for (let i = 1; i <= 10; i++) {
+    console.log('----------');
 
-const sumEur = Number(prompt('Введите стоимость покупки в евро:'));
-
-const calсСonversion = () => {
-    let value = sumEur * 1.2 * 64;
-    return value;
+    for (let y = 1; y <= 10; y++) {
+        console.log(`${i} ** ${y} = ${i**y}`);
+    }
 }
-
-alert ('Стоимость покупки в рублях составляет ' + calсСonversion () + ' рублей');
