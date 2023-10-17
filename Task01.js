@@ -1,7 +1,6 @@
-for (let i = 1; i <= 10; i++) {
-    console.log('----------');
+'use strict'
 
-    for (let y = 1; y <= 10; y++) {
-        console.log(`${i} ** ${y} = ${i**y}`);
-    }
-}
+const allStudents = ['Иванов', 'Петров', 'Сидоров', 'Кузнецов', 'Смирнов', 'Попов', 'Соколов'];
+const failedStudents = ['Сидоров', 'Смирнов', 'Попов'];
+
+console.log(allStudents.filter(n => !failedStudents.includes(n)));
