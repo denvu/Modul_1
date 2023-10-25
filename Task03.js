@@ -1,10 +1,31 @@
-'use strict'
+"use strict"
 
-const names= ['Noah', 'Liam', 'Mason', 'Jacob', 'Robot', 'William', 'Ethan', 'Michael', 'Alexander'];
+const getArray = function (elements, m, n, str) {
+  let arr = [];
 
-const addPrefix = function (name, prefix) {
+  for (let i = 0; i < elements; i++) {
     
-    return names.map((name) => prefix + ' '+ name);
-};
+    if (arr.length < elements) {
+      
+      while (arr.length < elements) {
+        function getRandomNumber(m, n) {
+          return Math.floor(Math.random() * (n - m + 1) + m);
+        }
 
-console.log(addPrefix(names, 'Mr'));
+        const rnd = getRandomNumber(m, n);
+
+        if (str == "even" && rnd % 2 == 0) {
+          arr.push(rnd);
+        }
+
+        if (str == "odd" && rnd % 2 !== 0) {
+          arr.push(rnd);
+        }
+      }
+    }
+  }
+
+  console.log(arr);
+}
+
+getArray(25, 1, 100, "odd");

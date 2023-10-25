@@ -1,6 +1,19 @@
-'use strict'
+"use strict";
 
-const allStudents = ['Иванов', 'Петров', 'Сидоров', 'Кузнецов', 'Смирнов', 'Попов', 'Соколов'];
-const failedStudents = ['Сидоров', 'Смирнов', 'Попов'];
+const getArray = function (elements) {
+  let arr = [];
 
-console.log(allStudents.filter(n => !failedStudents.includes(n)));
+  for (let i = 0; i < elements; i++) {
+    if (arr.length < elements) {
+      const rnd = Math.round(Math.random() * 100);
+
+      arr.push(rnd);
+    } else {
+      return;
+    }
+  }
+
+  console.log(arr);
+};
+
+getArray(100);
