@@ -1,20 +1,18 @@
-"use strict";
+'use strict';
 
 const cart = {
-  items: [], //товары
+  items: [], // товары
   get totalPrice() {
     return this.calculateItemPrice();
   },
-  set totalPrice(value) {
-    this.calculateItemPrice() = value;
-  },
-  //общая стоимость корзины
-  count: 0, //количество товаров
-  getTotalPrice: function () {
+  set totalPrice(value) {},
+  // общая стоимость корзины
+  count: 0, // количество товаров
+  getTotalPrice() {
     return this.totalPrice;
-  }, //получить общую стоимость товаров, метод возвращает значение свойства totalPrice
+  }, // получить общую стоимость товаров,  возвращает значение  totalPrice
 
-  add (name, price, quantity = 1) {
+  add(name, price, quantity = 1) {
     const item = {
       name,
       price,
@@ -22,33 +20,46 @@ const cart = {
     };
     this.items.push(item);
     this.increaseCount(quantity);
-  }, //добавить товар
+  }, // добавить товар
 
-  increaseCount (num) {
+  increaseCount(num) {
     this.count += num;
-  }, //увеличить количество товаров, Принимает один параметр(число) Увеличивает свойство count на это число
+  }, // Принимает один параметр(число) Увеличивает свойство count на это число
 
-  calculateItemPrice () {
+  calculateItemPrice() {
     return this.items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
+      (sum, item) => sum + item.price * item.quantity * ((100 - this.discount) / 100),
+      0,
     );
-  }, //посчитать общую стоимость товаров, пересчитывает стоимость всей корзины используя метод reduce и записывает значение в totalPrice
+  }, // пересчитывает стоимость корзины методом reduce и записывает в totalPrice
 
-  clear () {
+  clear() {
     this.items = [];
     this.totalPrice = 0;
     this.count = 0;
-  }, //очистить корзину, Очищает полностью нашу корзину, возвращает все значения в изначальные
+  }, // Очищает полностью  корзину, возвращает все значения в изначальные
 
-  print () {
+  print() {
     console.log(JSON.stringify(this.items));
     console.log('Общая стоимость: ', this.totalPrice);
-  }, //распечатать корзину, Выводит в консоль JSON строку из массива items и на следующей строке выводит общую стоимость корзины
+  }, // Выводит в консоль JSON строку из массива и общую стоимость
+
+  discount: 0,
+  setDiscount(promocode) {
+    if (promocode === 'METHED') {
+      this.discount = 15;
+    }
+    if (promocode === 'NEWYEAR') {
+      this.discount = 21;
+    }
+  },
 };
 
 cart.add('Морковь', 15, 3);
 cart.add('Лук', 100, 5);
 cart.add('Томат', 20, 5);
+
+cart.setDiscount('NEWYEAR');
+console.log('Скидка ' + cart.discount + '%');
 
 cart.print();
