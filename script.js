@@ -1,4 +1,5 @@
 'use strict';
 
-const startGame = window.RPS();
+const startGame = window.marbles();
 startGame();
+
